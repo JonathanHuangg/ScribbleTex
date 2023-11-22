@@ -188,10 +188,7 @@ function App() {
 
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-  }
+
 
   
   // Render html from hostUi.js

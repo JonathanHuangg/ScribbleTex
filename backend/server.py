@@ -8,7 +8,7 @@ import base64
 from google.cloud import aiplatform
 from google.cloud.aiplatform.gapic.schema import predict
 
-from openCVMain import main_function
+from backend.Unused.openCVMain import main_function
 
 # Importing deps for image prediction
 # from tensorflow.keras.preprocessing import image
