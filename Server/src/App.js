@@ -1,9 +1,5 @@
 import React, { useState, useRef} from 'react';
-import logo from './logo.svg';
-import github from './github.png';
-import CanvasDraw from 'react-canvas-draw';
 import './App.css';
-import Latex from 'react-latex';
 import html2canvas from 'html2canvas';
 import 'katex/dist/katex.min.css';
 import HostUi from './HostUi.js';
@@ -22,11 +18,6 @@ function App() {
 
   // This will be a combined set of latex script that can be saved!
   const [output, setOutput] = useState('');
-
-  //This is a function to add newly translated text to the output string.
-  const saveText = () => {
-      output += text + '\n';
-  }
 
   const translate_latex = (intputtext) => {
     const category_index = {
@@ -61,31 +52,12 @@ function App() {
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [isMouseOut, setIsMouseOut] = useState(false);
 
-  // This function clears the canvas.
-  const handleClear = () => {
-    setText('');
-  }
-
-  // This function captures the canvas and converts it to a data URL. 
-  const capture = () => {
-    // Get the second child of the 'canvasContainer' of 'saveableCanvas'
-    const canvas = saveableCanvas.current.canvasContainer.children[1];
-
-    // Use 'html2canvas' to take a screenshot of the canvas
-    html2canvas(canvas).then((canvas) => {
-      // Convert the screenshot to a base64-encoded JPG image
-      const imgData = canvas.toDataURL('image/jpg');
-      setDrawingDataUrl(imgData);
-
-      downloadImage(imgData);
-    });
-  };
 
   //This downloads the image to the user's computer.a
   //Probably a placeholder since it will be uploaded to the server.
   const downloadImage = async (imgPath) => {
 
-    const byteCharacters = atob(imgPath.split(',')[1]);
+    const byteCharacters = atob(imgPath.split(',')[1]); // Change into byte characters
     const byteNumbers = new Array(byteCharacters.length);
     for (let i = 0; i < byteCharacters.length; i++) {
       byteNumbers[i] = byteCharacters.charCodeAt(i);
@@ -120,7 +92,6 @@ function App() {
         }
         
         setOutput(result.result);
-        saveableCanvas.current.clear();
  
         // Handle the response from the server, e.g., display a success message
       } else {
@@ -134,23 +105,16 @@ function App() {
       saveableCanvas.current.clear();
     }
 
-
-    // const link = document.createElement('a');
-    // link.href = imgPath;
-    // link.download = 'scribbletex.jpg';
-    // document.body.appendChild(link);
-    // link.click();
-    // document.body.removeChild(link);
-    // handleClear();    
   }
 
-
-  // This function is called when the user releases the mouse button.
+  
+  // This method will be overhauled in order to still track changes, right now, does nothing
   const handleMouseUp = () => {
-    //Note that this calls the capture function above.
-    capture();
+    // Note that this calls the capture function above.
+    // capture();
     // alert("Drawing finished!"); 
   };
+  
 
   const predictModel = async () => {
 
@@ -186,21 +150,6 @@ function App() {
   // This function uploads the image to the server.
   // The server needs to be changed and tested.
   const handleUpload = async () => {
-    // const response = await fetch('https://your-server.com/upload', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     image: drawingDataUrl,
-    //   }),
-    // });
-
-    // if (response.ok) {
-    //   alert('Image uploaded successfully!');
-    // } else {
-    //   alert('Failed to upload image.');
-    // }
 
     if (!selectedFile) {
       console.error('No file selected');
@@ -244,17 +193,7 @@ function App() {
     setSelectedFile(file);
   }
 
-
-  // This function is called to download the txt output
-  const downloadText = () => {
-  const element = document.createElement("a");
-  const file = new Blob([text.join('')], {type: 'text/plain'}); // Join 'text' into a single string
-  element.href = URL.createObjectURL(file);
-  element.download = "scribbletex.txt";
-  document.body.appendChild(element); // Required for this to work in FireFox
-  element.click();
-  }
-
+  
   // Render html from hostUi.js
   return (
     <HostUi
@@ -262,8 +201,6 @@ function App() {
       setIsMouseOut={setIsMouseDown}
       setIsMouseDown={setIsMouseDown}
       handleMouseUp={handleMouseUp}
-      handleClear={handleClear}
-      text={text}
     />
   );
 }
