@@ -1,0 +1,96 @@
+Inside App.js:
+
+/*
+  // This function captures the canvas and converts it to a data URL. 
+  const capture = () => {
+    // Get the second child of the 'canvasContainer' of 'saveableCanvas'
+    const canvas = saveableCanvas.current.canvasContainer.children[1];
+
+    // Use 'html2canvas' to take a screenshot of the canvas
+    html2canvas(canvas).then((canvas) => {
+      // Convert the screenshot to a base64-encoded JPG image
+      const imgData = canvas.toDataURL('image/jpg');
+      setDrawingDataUrl(imgData);
+
+      downloadImage(imgData);
+    });
+  };
+*/
+
+/*
+  // This function is called to download the txt output
+  const downloadText = () => {
+  const element = document.createElement("a");
+  const file = new Blob([text.join('')], {type: 'text/plain'}); // Join 'text' into a single string
+  element.href = URL.createObjectURL(file);
+  element.download = "scribbletex.txt";
+  document.body.appendChild(element); // Required for this to work in FireFox
+  element.click();
+  }
+*/
+
+//This is a function to add newly translated text to the output string.
+  const saveText = () => {
+      output += text + '\n';
+  }
+
+// This function clears the canvas.
+  const handleClear = () => {
+    setText('');
+  }
+
+const DownloadImage:
+   
+    // const link = document.createElement('a');
+    // link.href = imgPath;
+    // link.download = 'scribbletex.jpg';
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
+    // handleClear();   
+
+const handleUpload:
+
+// const response = await fetch('https://your-server.com/upload', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     image: drawingDataUrl,
+    //   }),
+    // });
+
+    // if (response.ok) {
+    //   alert('Image uploaded successfully!');
+    // } else {
+    //   alert('Failed to upload image.');
+    // }
+
+
+HostUi:
+
+{/* DEPCRECATED AFTER MAKING SWITCH TO HOST/SERVER
+        <div className="button-container">
+            <button onClick={handleClear}>Clear</button>
+          </div>
+        
+        } 
+        <div className='latex-container'>
+            <Latex style="color: white">{text}</Latex>
+        </div>
+        
+        <div className="button-container">
+        <button onClick={downloadText}>Download Text</button>
+        </div> */}
+        
+
+
+        {/* Buttons */}
+
+        {/* Image is drawn to screen, this is an example
+        <img src={drawingDataUrl} alt="drawing" className='test-image'/>
+
+        <div className='spacer' />
+
+        <div className='spacer' /> */}

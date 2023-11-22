@@ -4,7 +4,7 @@ import github from './github.png';
 import CanvasDraw from 'react-canvas-draw';
 import Latex from 'react-latex';
 
-const HostUi = ({ saveableCanvas, setIsMouseOut, setIsMouseDown, handleMouseUp, handleClear, text}) => {
+const HostUi = ({ saveableCanvas, setIsMouseOut, setIsMouseDown, handleMouseUp}) => {
     // This is the HTML that is rendered to the page.
     return (
     <div className="App">
@@ -23,7 +23,7 @@ const HostUi = ({ saveableCanvas, setIsMouseOut, setIsMouseDown, handleMouseUp, 
           {/* GitHub link */}
           <a
             className="App-link"
-            href="https://github.com/josephmasson26/ScribbleTex"
+            href="https://github.com/JonathanHuangg/ScribbleTex"
             target="_blank"
             rel="noopener noreferrer"
             style={{ height: '50px', marginTop: '5px' }} // Adjusted style
@@ -54,33 +54,6 @@ const HostUi = ({ saveableCanvas, setIsMouseOut, setIsMouseDown, handleMouseUp, 
             />
           </div>
         </div>
-        
-        {/* DEPCRECATED AFTER MAKING SWITCH TO HOST/SERVER
-        <div className="button-container">
-            <button onClick={handleClear}>Clear</button>
-          </div>
-        
-        } 
-        <div className='latex-container'>
-            <Latex style="color: white">{text}</Latex>
-        </div>
-        
-        <div className="button-container">
-        <button onClick={downloadText}>Download Text</button>
-        </div> */}
-        
-
-
-        {/* Buttons */}
-
-        {/* Image is drawn to screen, this is an example
-        <img src={drawingDataUrl} alt="drawing" className='test-image'/>
-
-        <div className='spacer' />
-
-        <div className='spacer' /> */}
-
-        
       </header>
     </div>
   );
